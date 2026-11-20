@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin Panel | MyBlog</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--line);
+            vertical-align: middle;
+        }
+
+        .admin-table th {
+            background: var(--soft);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--forest);
+        }
+
+        .admin-table tr:hover {
+            background: #f4f7f2;
+        }
+
+        .btn-danger {
+            background: #fff0ef;
+            color: var(--danger);
+            border: 1px solid #ffcdcd;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: white;
+        }
+    </style>
+</head>
+
+<body data-page="admin">
+    <header class="site-header"><a class="brand" href="/">My<span>Blog</span></a>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/explore.html">Explore</a>
+            <a href="/dashboard.html">Dashboard</a>
+            <a class="active member" href="/admin.html">Admin Panel</a>
+            <button class="link-button member" data-logout>Log out</button>
+        </nav>
+    </header>
+
+    <main class="page-shell dashboard">
+        <div id="pageLoader" class="page-loader">
+            <div class="spinner"></div>
+            <p>Loading MyBlog...</p>
+        </div>
+        <div class="dashboard-intro">
+            <div>
+                <p class="eyebrow">ADMINISTRATOR</p>
+                <h1 id="welcome">System Management</h1>
+                <p class="lede">Manage all users and posts across the platform.</p>
+            </div>
+        </div>
+
+        <p id="notice" class="notice" role="status"></p>
+
+       <!-- USER MANAGEMENT  -->
+        <section class="section-head" style="margin-top: 40px;">
+            <div>
+                <p class="eyebrow">USER MANAGEMENT</p>
+                <h2>Registered Users</h2>
+            </div>
+        </section>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Joined Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userList">
+                <tr>
+                    <td colspan="5">Loading users...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- POST MANAGEMENT -->
+        <section class="section-head" style="margin-top: 60px;">
+            <div>
+                <p class="eyebrow">CONTENT MANAGEMENT</p>
+                <h2>All Published Posts</h2>
+            </div>
+        </section>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="adminPostList">
+                <tr>
+                    <td colspan="5">Loading posts...</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <script src="/app.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Story | MyBlog</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body data-page="post" class="auth-loading">
+    <div id="pageLoader" class="page-loader">
+        <div class="spinner"></div>
+        <p>Loading MyBlog...</p>
+    </div>
+    <header class="site-header">
+        <a class="brand" href="/">My<span>Blog</span></a>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a class="active" href="/explore.html">Explore</a>
+
+            <!-- Guest (Logged Out) Links -->
+            <a class="guest" href="/login.html">Log in</a>
+
+            <!-- Member (Logged In) Links -->
+            <a class="member" href="/dashboard.html" hidden>Dashboard</a>
+
+            <!-- ADD THIS LINE: The Admin Panel link with the specific ID -->
+            <a class="member" id="adminNavLink" href="/admin.html" hidden>Admin Panel</a>
+
+            <button class="link-button member" data-logout hidden>Log out</button>
+        </nav>
+    </header>
+
+    <main class="reading-shell">
+        <a class="back-link" href="/explore.html">Back</a>
+        <p id="notice" class="notice" role="status"></p>
+
+        <!-- The app.js will inject the post and comments here -->
+        <article id="postView" class="reading-card" aria-live="polite"></article>
+    </main>
+
+    <script src="/app.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Explore | MyBlog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body data-page="explore" class="auth-loading">
+    <div id="pageLoader" class="page-loader">
+        <div class="spinner"></div>
+        <p>Loading MyBlog...</p>
+    </div>
+    <header class="site-header"><a class="brand" href="/">My<span>Blog</span></a>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a class="active member" href="/explore.html">Explore</a>
+
+            <!-- Guest (Logged Out) Links -->
+            <a class="guest" href="/login.html">Log in</a>
+
+            <!-- Member (Logged In) Links -->
+            <a class="member" href="/dashboard.html" hidden>Dashboard</a>
+            <a class="member" id="adminNavLink" href="/admin.html" hidden>Admin Panel</a>
+            <button class="link-button member" data-logout hidden>Log out</button>
+        </nav>
+    </header>
+    <main class="page-shell">
+        <p class="eyebrow">DISCOVER</p>
+        <h1>Explore stories</h1>
+        <p class="lede">Browse practical ideas, personal reflections, and stories from the community.</p>
+        <div class="filter-row"><label for="categoryFilter">Filter by topic</label><select id="categoryFilter">
+                <option value="">All categories</option>
+            </select></div>
+        <section id="postList" class="post-grid" aria-live="polite"></section>
+    </main>
+    <footer><a class="brand" href="/">My<span>Blog</span></a>
+        <p>A considered place for independent writing.</p>
+    </footer>
+    <script src="/app.js" defer></script>
+</body>
+
+</html>

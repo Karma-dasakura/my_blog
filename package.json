@@ -1,0 +1,27 @@
+{
+  "name": "ele201-secure-myblog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal secure publishing platform for ELE201 Secure Coding",
+  "main": "server.js",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "test:security": "node --test test/*.test.js",
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check public/app.js && node --check scripts/create-admin.js && node --check scripts/encrypt-existing-content.js",
+    "create-admin": "node scripts/create-admin.js",
+    "migrate-encryption": "node scripts/encrypt-existing-content.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.3.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.1",
+    "winston": "^3.19.0"
+  }
+}

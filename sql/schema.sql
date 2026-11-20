@@ -1,0 +1,34 @@
+
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  display_name VARCHAR(80) NOT NULL CHECK (char_length(display_name) BETWEEN 2 AND 80),
+  email_lookup CHAR(64) NOT NULL UNIQUE,
+  email_encrypted TEXT NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role VARCHAR(10) NOT NULL DEFAULT 'author' CHECK (role IN ('author','admin')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE TABLE IF NOT EXISTS categories (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(50) NOT NULL UNIQUE
+);
+CREATE TABLE IF NOT EXISTS posts (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  author_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  category_id BIGINT REFERENCES categories(id) ON DELETE SET NULL,
+  title VARCHAR(160) NOT NULL,
+  content TEXT NOT NULL,
+  published BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE TABLE IF NOT EXISTS comments (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  post_id BIGINT NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+  author_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  body VARCHAR(1000) NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS posts_feed_index ON posts (published, created_at DESC);
+CREATE INDEX IF NOT EXISTS comments_post_index ON comments (post_id, created_at);
+INSERT INTO categories (name) VALUES ('Technology'), ('Programming'), ('Lifestyle'), ('Study') ON CONFLICT (name) DO NOTHING;

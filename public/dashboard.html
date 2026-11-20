@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard | MyBlog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body data-page="dashboard" class="auth-loading">
+    <div id="pageLoader" class="page-loader">
+        <div class="spinner"></div>
+        <p>Loading MyBlog...</p>
+    </div>
+    <header class="site-header"><a class="brand" href="/">My<span>Blog</span></a>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/explore.html">Explore</a>
+
+            <!-- This makes Dashboard bold ONLY on this page -->
+            <a class="active member" href="/dashboard.html">Dashboard</a>
+            <a class="member" id="adminNavLink" href="/admin.html" hidden>Admin Panel</a>
+            <!-- Log out button -->
+            <button class="link-button member" data-logout>Log out</button>
+        </nav>
+    </header>
+    <main class="page-shell dashboard">
+        <div class="dashboard-intro">
+            <div>
+                <p class="eyebrow">YOUR WORKSPACE</p>
+                <h1 id="welcome">Your writing</h1>
+                <p class="lede">Shape an idea, publish it, and return to it whenever inspiration strikes.</p>
+            </div><a class="button" href="#editor">Write a story</a>
+        </div>
+        <p id="notice" class="notice" role="status"></p>
+        <section id="editor" class="editor-card">
+            <div>
+                <p class="eyebrow">EDITOR</p>
+                <h2 id="formTitle">Write something new</h2>
+            </div>
+            <form id="postForm"><input id="editingId" type="hidden">
+                <div class="two-columns"><label>Title<input name="title" required minlength="3" maxlength="160"
+                            placeholder="Give your story a title"></label><label>Topic<select name="categoryId"
+                            id="postCategory">
+                            <option value="">Uncategorized</option>
+                        </select></label></div><label>Your story<textarea name="content" required minlength="10"
+                        maxlength="10000" placeholder="Start writing..."></textarea></label>
+                <div class="form-actions"><button class="button" id="publishButton">Publish story</button><button
+                        type="button" class="secondary" id="cancelEdit" hidden>Cancel editing</button></div>
+            </form>
+        </section>
+        <section class="section-head">
+            <div>
+                <p class="eyebrow">YOUR POSTS</p>
+                <h2>Published stories</h2>
+            </div>
+        </section>
+        <section id="myPostList" class="post-grid" aria-live="polite"></section>
+    </main>
+    <script src="/app.js" defer></script>
+</body>
+
+</html>
